@@ -35,7 +35,7 @@ async function findSpecificGenre() {
     }
 }
 
-findSpecificGenre()
+//findSpecificGenre()
 
 
 //----- function to querry all books published after 1950
@@ -55,11 +55,11 @@ async function publishedAfter1995() {
 //publishedAfter1995()
 
 ///----- function to find books by specific author
-async function booksBYSpecisficAuthor() {
+async function booksBYSpecisficAuthor(name) {
     const { collection, client } = await dbConnection();
 
     try {
-        const specificAuthor = await collection.aggregate([{ $match: { author: "Paulo Coelho" } }]).toArray();
+        const specificAuthor = await collection.aggregate([{ $match: { author: name } }]).toArray();
         console.log("Books published by Paulo Coelho: ", specificAuthor);
 
     } catch (error) {
@@ -68,7 +68,7 @@ async function booksBYSpecisficAuthor() {
         await client.close();
     }
 }
-//booksBYSpecisficAuthor();
+//booksBYSpecisficAuthor("Paulo Coelho");
 
 
 ///=----------function to update a specific book title
